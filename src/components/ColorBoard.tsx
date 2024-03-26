@@ -1,11 +1,12 @@
-import {useState, useEffect, ChangeEvent} from 'react';
-import blueCandy from './images/blue-candy.png'
-import greenCandy from './images/green-candy.png'
-import orangeCandy from './images/orange-candy.png'
-import purpleCandy from './images/purple-candy.png'
-import redCandy from './images/red-candy.png'
-import yellowCandy from './images/yellow-candy.png'
-import blank from './images/blank.png'
+import React, {useState, useEffect} from 'react';
+import blueCandy from '../images/blue-candy.png'
+import greenCandy from '../images/green-candy.png'
+import orangeCandy from '../images/orange-candy.png'
+import purpleCandy from '../images/purple-candy.png'
+import redCandy from '../images/red-candy.png'
+import yellowCandy from '../images/yellow-candy.png'
+import blank from '../images/blank.png'
+import ScoreTube from './ScoreTube'
 
 const colorList: string[] = [
     blueCandy,
@@ -95,14 +96,14 @@ function ColorBoard() {
             if (i < width*5){
                 if (conditionCol.every((index) => colorTemplate[index] === decidedColor && !isBlank)){
                     conditionCol.forEach((index) => colorTemplate[index] = blank);
-                    setScoreTotal((scoreTotal) => scoreTotal+300);
+                    setScoreTotal((scoreTotal) => scoreTotal+200);
                     return true;
                 }
             }
             if (i < Math.floor(i/width)*width+5){
                 if (conditionRow.every((index) => colorTemplate[index] === decidedColor && !isBlank)){
                     conditionRow.forEach((index) => colorTemplate[index] = blank);
-                    setScoreTotal((scoreTotal) => scoreTotal+300);
+                    setScoreTotal((scoreTotal) => scoreTotal+200);
                     return true;
                 }
             }
@@ -119,14 +120,14 @@ function ColorBoard() {
             if (i < width*4){
                 if (conditionCol.every((index) => colorTemplate[index] === decidedColor && !isBlank)){
                     conditionCol.forEach((index) => colorTemplate[index] = blank);
-                    setScoreTotal((scoreTotal) => scoreTotal+500);
+                    setScoreTotal((scoreTotal) => scoreTotal+400);
                     return true;
                 }
             }
             if (i < Math.floor(i/width)*width+4){
                 if (conditionRow.every((index) => colorTemplate[index] === decidedColor && !isBlank)){
                     conditionRow.forEach((index) => colorTemplate[index] = blank);
-                    setScoreTotal((scoreTotal) => scoreTotal+500);
+                    setScoreTotal((scoreTotal) => scoreTotal+400);
                     return true;
                 }
             }
@@ -167,6 +168,7 @@ function ColorBoard() {
         if (validMoves.includes(blockBeingPlaced) && blockBeingPlaced && isThree || isFour || isFive){
             setBlockBeingDragged(null);
             setBlockBeingPlaced(null);
+            setColorTemplate([...colorTemplate]);
         } else {
             colorTemplate[currentBlockId] = blockBeingDragged.getAttribute('src');
             colorTemplate[dropBlockId] = blockBeingPlaced.getAttribute('src');
@@ -212,6 +214,7 @@ function ColorBoard() {
                 />
             ))}
         </div>
+        <ScoreTube score={scoreTotal}/>
     </div>
   )
 }
