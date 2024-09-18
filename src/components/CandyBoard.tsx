@@ -246,14 +246,14 @@ function CandyBoard() {
 
   return (
     <div className="flex justify-center py-4">
-      <div className="flex flex-wrap w-[448px] h-[448px] bg-neutral-100">
+      <div className="flex flex-wrap lg:w-[29rem] lg:h-[29rem] min-[320px]:w-[15.25rem] min-[320px]:h-[15.25rem] bg-neutral-100 border-8 rounded-3xl border-emerald-300">
         {colorTemplate.map((color, index: number) => (
           <img
             key={index}
             data-id={index}
             alt={color}
             src={color}
-            className="w-14 h-14"
+            className="lg:w-14 lg:h-14 min-[320px]:w-7 min-[320px]:h-7"
             style={{ backgroundColor: color }}
             draggable={true}
             onDrag={(e) => setBlockBeingDragged(e.target)}
