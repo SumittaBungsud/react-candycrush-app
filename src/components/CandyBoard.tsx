@@ -256,6 +256,11 @@ function CandyBoard() {
             className="lg:w-14 lg:h-14 min-[320px]:w-7 min-[320px]:h-7"
             style={{ backgroundColor: color }}
             draggable={true}
+            onTouchMove={(e) => setBlockBeingDragged(e.target)}
+            onTouchEnd={async (e) => {
+              await setBlockBeingPlaced(e.target);
+              dragEnd();
+            }}
             onDrag={(e) => setBlockBeingDragged(e.target)}
             onDrop={(e) => setBlockBeingPlaced(e.target)}
             onDragEnd={dragEnd}
